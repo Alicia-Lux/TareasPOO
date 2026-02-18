@@ -26,6 +26,31 @@ public class TermometroDigital {
     
      public String getUnidad() {return unidad;}
      public void setUnidad(String unidad){this.unidad = unidad;}
-     
-    
+
+     public double getTemperaturaActual() {return temperaturaActual;}
+
+     public void prender() {encendido = true;}
+     public void apagar() {encendido = false;}
+
+        public double medirTemperatura() {
+    if (!encendido) {
+        throw new IllegalStateException("El termómetro está apagado");
+    }
+
+    Random r = new Random();
+    temperaturaActual = -10 + (60 * r.nextDouble());
+    historialTemperaturas.add(temperaturaActual);
+    return temperaturaActual;
 }
+public double medirTemperatura(double valorManual){
+    if (!encendido){
+        throw new IllegalStateException("El termometro esta apagado")
+    }
+    temperaturaActual = valorManual;
+    historialTemperaturas.add(temperaturaActual);
+    return temperaturaActual;
+}
+public void convertirUnidad(String nuevaUnidad){
+    if(!nueva unidad )
+}
+     }
