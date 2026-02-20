@@ -48,7 +48,7 @@ public class VehiculoLogistico {
         return velocidadPromedio * 8;
     }
 
-    public double calcularCostoDelViaje(double distancia){
+    public double calcularCostoViaje(double distancia){
         return distancia * 10;
     }
 }
