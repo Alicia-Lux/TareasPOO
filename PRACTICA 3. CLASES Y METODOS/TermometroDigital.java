@@ -19,7 +19,7 @@ public class TermometroDigital {
         this.encendido = false;
         this.unidad = "C";
         historialTemperaturas = new ArrayList<>();
-     }
+    }
 
      public String getMarca() {return marca;}
      public void setMarca(String marca){this.marca = marca;}
@@ -40,17 +40,57 @@ public class TermometroDigital {
     Random r = new Random();
     temperaturaActual = -10 + (60 * r.nextDouble());
     historialTemperaturas.add(temperaturaActual);
-    return temperaturaActual;
-}
-public double medirTemperatura(double valorManual){
-    if (!encendido){
-        throw new IllegalStateException("El termometro esta apagado")
+    return temperaturaActual;   
     }
-    temperaturaActual = valorManual;
-    historialTemperaturas.add(temperaturaActual);
-    return temperaturaActual;
+    public double medirTemperatura(double valorManual){
+        if (!encendido){
+            throw new IllegalStateException("El termometro esta apagado");
+        }
+        temperaturaActual = valorManual;
+        historialTemperaturas.add(temperaturaActual);
+        return temperaturaActual;
+    }
+    public void convertirUnidad(String nuevaUnidad){
+        if(!nuevaUnidad.equals("C") && !nuevaUnidad.equals("F")){
+            throw new IllegalArgumentException("Unidad invalida. Use 'C' o 'F'");
+        }
+        if (unidad.equals("C") && !nuevaUnidad.equals("F")){
+            temperaturaActual = (temperaturaActual - 32) * 5.0 / 9.0;
+        }
+        unidad = nuevaUnidad;
+    }
+    public double calcularPromedio() {
+        if (historialTemperaturas.isEmpty()) {
+            throw new IllegalStateException("No hay temperaturas registradas");
+        }
+        double suma = 0;
+        for (double t : historialTemperaturas) {
+            suma += t;
+        }
+        return suma / historialTemperaturas.size();
+    }
+    public double obtenerMaxima() {
+        if (historialTemperaturas.isEmpty()){
+            throw new IllegalStateException("No hay temperaturas registradas");
+        }
+        double max = historialTemperaturas.get(0);
+        for (double t : historialTemperaturas){
+            if (t > max){
+                max = t;
+            }
+        }
+        return max;
+    }
+    public double obtenerMinima() {
+        if (historialTemperaturas.isEmpty()) {
+            throw new IllegalStateException("No hay temperaturas registradas");
+        }
+        double min = historialTemperaturas.get(0);
+        for (double t : historialTemperaturas){
+            if (t < min){
+                min = t;
+            }
+        }
+        return min;
+    }
 }
-public void convertirUnidad(String nuevaUnidad){
-    if(!nueva unidad )
-}
-     }
