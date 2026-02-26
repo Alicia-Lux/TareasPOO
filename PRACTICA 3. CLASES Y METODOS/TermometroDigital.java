@@ -1,96 +1,53 @@
-import java.util.ArrayList;
-import java.util.Random;
-
 public class TermometroDigital {
+
+    //Atributos
     private String marca;
-    private boolean encendido;
-    private double temperaturaActual;
-    private String unidad;
-    private ArrayList<Double> historialTemperaturas;
+    private String color;
+    private double valor;      
+    private boolean botonOnOff;
 
-    public TermometroDigital (String marca) {
+    //Constructor
+    public TermometroDigital(String marca) {
         this.marca = marca;
-        this.encendido = false;
-        this.unidad = "C";
-        historialTemperaturas = new ArrayList<>();
-    }
-     public TermometroDigital(){
-        this.marca = "";
-        this.encendido = false;
-        this.unidad = "C";
-        historialTemperaturas = new ArrayList<>();
+        this.color = "Blanco";     
+        this.valor = 0.0;
+        this.botonOnOff = false;   
     }
 
-     public String getMarca() {return marca;}
-     public void setMarca(String marca){this.marca = marca;}
-    
-     public String getUnidad() {return unidad;}
-     public void setUnidad(String unidad){this.unidad = unidad;}
-
-     public double getTemperaturaActual() {return temperaturaActual;}
-
-     public void prender() {encendido = true;}
-     public void apagar() {encendido = false;}
-
-        public double medirTemperatura() {
-    if (!encendido) {
-        throw new IllegalStateException("El termómetro está apagado");
+    //Métodos GET y SET
+    // Marca
+    public void setMarca(String marca) {
+        this.marca = marca;
     }
 
-    Random r = new Random();
-    temperaturaActual = -10 + (60 * r.nextDouble());
-    historialTemperaturas.add(temperaturaActual);
-    return temperaturaActual;   
+    public String getMarca() {
+        return marca;
     }
-    public double medirTemperatura(double valorManual){
-        if (!encendido){
-            throw new IllegalStateException("El termometro esta apagado");
-        }
-        temperaturaActual = valorManual;
-        historialTemperaturas.add(temperaturaActual);
-        return temperaturaActual;
+
+    // Color
+    public void setColor(String color) {
+        this.color = color;
     }
-    public void convertirUnidad(String nuevaUnidad){
-        if(!nuevaUnidad.equals("C") && !nuevaUnidad.equals("F")){
-            throw new IllegalArgumentException("Unidad invalida. Use 'C' o 'F'");
-        }
-        if (unidad.equals("C") && !nuevaUnidad.equals("F")){
-            temperaturaActual = (temperaturaActual - 32) * 5.0 / 9.0;
-        }
-        unidad = nuevaUnidad;
+
+    public String getColor() {
+        return color;
     }
-    public double calcularPromedio() {
-        if (historialTemperaturas.isEmpty()) {
-            throw new IllegalStateException("No hay temperaturas registradas");
-        }
-        double suma = 0;
-        for (double t : historialTemperaturas) {
-            suma += t;
-        }
-        return suma / historialTemperaturas.size();
+
+    // Valor (temperatura)
+    public void setValor(double valor) {
+        this.valor = valor;
     }
-    public double obtenerMaxima() {
-        if (historialTemperaturas.isEmpty()){
-            throw new IllegalStateException("No hay temperaturas registradas");
-        }
-        double max = historialTemperaturas.get(0);
-        for (double t : historialTemperaturas){
-            if (t > max){
-                max = t;
-            }
-        }
-        return max;
+
+    public double getValor() {
+        return valor;
     }
-    public double obtenerMinima() {
-        if (historialTemperaturas.isEmpty()) {
-            throw new IllegalStateException("No hay temperaturas registradas");
-        }
-        double min = historialTemperaturas.get(0);
-        for (double t : historialTemperaturas){
-            if (t < min){
-                min = t;
-            }
-        }
-        return min;
+
+    // Botón On/Off
+    public void setBotonOnOff(boolean botonOnOff) {
+        this.botonOnOff = botonOnOff;
+    }
+
+    public boolean getBotonOnOff() {
+        return botonOnOff;
     }
 }
