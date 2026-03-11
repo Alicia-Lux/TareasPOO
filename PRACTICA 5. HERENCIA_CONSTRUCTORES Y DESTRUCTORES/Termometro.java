@@ -1,52 +1,43 @@
-public class Termometro {
-        //Atributos
+public class Termometro extends InstrumentoDeMedicion {
+
     private String marca;
-    private String color;
-    private double valor;      
+    private String color;     
     private boolean botonOnOff;
 
-    //Constructor
-    public Termometro(String marca) {
-        this.marca = marca;
-        this.color = "Blanco";     
-        this.valor = 0.0;
-        this.botonOnOff = false;   
-    }
-
-    //Métodos GET y SET
-    // Marca
-    public void setMarca(String marca) {
-        this.marca = marca;
+    public Termometro(String nombre, String marca) {
+        super(nombre, "°C",0);
+        setMarca(marca);
     }
 
     public String getMarca() {
         return marca;
     }
+    public void setMarca(String marca){
+        if (marca != null && !marca.isEmpty()) {
+            this.marca = marca;
+        }
+    }
 
-    // Color
+      public String getColor() {
+        return color;
+    }
     public void setColor(String color) {
         this.color = color;
     }
 
-    public String getColor() {
-        return color;
+        public boolean getBotonOnOff() {
+        return botonOnOff;
     }
-
-    // Valor (temperatura)
-    public void setValor(double valor) {
-        this.valor = valor;
-    }
-
-    public double getValor() {
-        return valor;
-    }
-
-    // Botón On/Off
     public void setBotonOnOff(boolean botonOnOff) {
         this.botonOnOff = botonOnOff;
     }
 
-    public boolean getBotonOnOff() {
-        return botonOnOff;
+    @Override
+    public void medir() {
+         if (botonOnOff) {
+            System.out.println("Temperatura actual: " + valorActual + " " + unidadMedida);
+        } else {
+            System.out.println("El termómetro está apagado");
+        }
     }
-}
+    }

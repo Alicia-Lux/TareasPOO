@@ -1,19 +1,21 @@
 public abstract class InstrumentoDeMedicion {
-    private String nombre;
-    private String unidadMedida;
-    private double valorActual;
+    protected String nombre;
+    protected String unidadMedida;
+    protected double valorActual;
     
     public InstrumentoDeMedicion(){
-
     }
 
     public InstrumentoDeMedicion(String nombre, String unidadMedida, double valorActual){
+        setNombre(nombre);
+        setvalorActual(valorActual);
+        setunidadMedida(unidadMedida);
     }
 
-    public String getnombre(){
+    public String getNombre(){
         return nombre;
     }
-    public void setnombre(String nombre){
+    public void setNombre(String nombre){
         if (nombre != null && !nombre.isEmpty()) {
             this.nombre = nombre;
         }
