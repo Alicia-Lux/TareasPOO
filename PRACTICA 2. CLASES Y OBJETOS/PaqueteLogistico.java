@@ -20,7 +20,7 @@ public class PaqueteLogistico {
 
     // Setter de peso con programación defensiva
     public void setPeso(double peso) {
-        if (peso >= 0.1 && peso <= 500) {
+        if (peso >= 1 && peso <= 500) {
             this.peso = peso;
         } else {
             System.out.println("Error: El peso debe estar entre 0.1 y 500 kg.");
