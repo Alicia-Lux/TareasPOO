@@ -6,7 +6,11 @@ public class PaqueteLogistico {
 
     // Constructor que recibe el destino
     public PaqueteLogistico(String destino) {
-        this.destino = destino;
+        if (destino != null && !destino.isEmpty()) {
+            this.destino = destino;
+        } else {
+            System.out.println("Error: El destino no puede ser nulo o vacío.");
+        }
     }
 
     // Getter de peso
@@ -34,6 +38,29 @@ public class PaqueteLogistico {
             this.destino = destino;
         } else {
             System.out.println("Error: El destino no puede estar vacío.");
+        }
+    }
+
+    // Método que calcula el costo extra según la prioridad
+    public double calcularCostoExtra(String prioridad) {
+
+        if (prioridad == null || prioridad.trim().isEmpty()) {
+            System.out.println("Error: La prioridad no puede ser nula o vacía.");
+            return 0;
+        }
+
+        prioridad = prioridad.toLowerCase();
+
+        switch (prioridad) {
+            case "alta":
+                return 150.0;
+            case "media":
+                return 80.0;
+            case "baja":
+                return 30.0;
+            default:
+                System.out.println("Error: Prioridad no válida. Use Alta, Media o Baja.");
+                return 0;
         }
     }
 }
