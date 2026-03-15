@@ -1,53 +1,101 @@
 public class TermometroDigital {
 
-    //Atributos
     private String marca;
-    private String color;
-    private double valor;      
-    private boolean botonOnOff;
+    private boolean encendido;
+    private double temperaturaActual;
+    private String unidad;
+    private double[] historialTemperaturas;
 
-    //Constructor
+    // Constructor
     public TermometroDigital(String marca) {
         this.marca = marca;
-        this.color = "Blanco";     
-        this.valor = 0.0;
-        this.botonOnOff = false;   
+        this.encendido = false;
+        this.temperaturaActual = 0.0;
+        this.unidad = "C";
+        this.historialTemperaturas = new double[10];
     }
 
-    //Métodos GET y SET
-    // Marca
-    public void setMarca(String marca) {
-        this.marca = marca;
-    }
-
+    // Métodos GET
     public String getMarca() {
         return marca;
     }
 
-    // Color
-    public void setColor(String color) {
-        this.color = color;
+    public boolean isEncendido() {
+        return encendido;
     }
 
-    public String getColor() {
-        return color;
+    public double getTemperaturaActual() {
+        return temperaturaActual;
     }
 
-    // Valor (temperatura)
-    public void setValor(double valor) {
-        this.valor = valor;
+    public String getUnidad() {
+        return unidad;
     }
 
-    public double getValor() {
-        return valor;
+    public double[] getHistorialTemperaturas() {
+        return historialTemperaturas;
     }
 
-    // Botón On/Off
-    public void setBotonOnOff(boolean botonOnOff) {
-        this.botonOnOff = botonOnOff;
+    // Métodos SET
+    public void setMarca(String marca) {
+        this.marca = marca;
     }
 
-    public boolean getBotonOnOff() {
-        return botonOnOff;
+    public void setEncendido(boolean encendido) {
+        this.encendido = encendido;
+    }
+
+    public void setTemperaturaActual(double temperaturaActual) {
+        this.temperaturaActual = temperaturaActual;
+    }
+
+    public void setUnidad(String unidad) {
+        this.unidad = unidad;
+    }
+
+    public void setHistorialTemperaturas(double[] historialTemperaturas) {
+        this.historialTemperaturas = historialTemperaturas;
+    }
+
+    // Comportamientos
+    public void prender() {
+        encendido = true;
+        System.out.println("El termómetro está encendido.");
+    }
+
+    public void apagar() {
+        encendido = false;
+        System.out.println("El termómetro está apagado.");
+    }
+
+    public void medirTemperatura() {
+        if (encendido) {
+            temperaturaActual = 35 + (Math.random() * 5);
+            System.out.println("Temperatura medida: " + temperaturaActual + " " + unidad);
+        } else {
+            System.out.println("El termómetro está apagado.");
+        }
+    }
+
+    public void convertirUnidad(String nuevaUnidad) {
+        if (unidad.equals("C") && nuevaUnidad.equals("F")) {
+            temperaturaActual = (temperaturaActual * 9 / 5) + 32;
+            unidad = "F";
+        } else if (unidad.equals("F") && nuevaUnidad.equals("C")) {
+            temperaturaActual = (temperaturaActual - 32) * 5 / 9;
+            unidad = "C";
+        }
+    }
+
+    public void calcularEstadisticas() {
+        double suma = 0;
+
+        for (double temp : historialTemperaturas) {
+            suma += temp;
+        }
+
+        double promedio = suma / historialTemperaturas.length;
+
+        System.out.println("Promedio de temperaturas: " + promedio);
     }
 }
