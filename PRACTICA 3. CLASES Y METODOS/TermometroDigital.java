@@ -14,6 +14,13 @@ public class TermometroDigital {
         this.unidad = "C";
         this.historialTemperaturas = new double[10];
     }
+    // Constructor por defecto
+    public TermometroDigital() {
+     marca = "Samsung";
+     encendido = false;
+     unidad = "C";
+     historialTemperaturas = new double[10];
+}
 
     // Métodos GET
     public String getMarca() {
@@ -72,6 +79,16 @@ public class TermometroDigital {
         if (encendido) {
             temperaturaActual = 35 + (Math.random() * 5);
             System.out.println("Temperatura medida: " + temperaturaActual + " " + unidad);
+        } else {
+            System.out.println("El termómetro está apagado.");
+        }
+    }
+
+      // Método sobrecargado
+    public void medirTemperatura(double temperaturaManual) {
+        if (encendido) {
+            temperaturaActual = temperaturaManual;
+            System.out.println("Temperatura ingresada manualmente: " + temperaturaActual + " " + unidad);
         } else {
             System.out.println("El termómetro está apagado.");
         }
