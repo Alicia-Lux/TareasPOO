@@ -1,60 +1,39 @@
 public class PaqueteLogistico {
-    //Atributos
-    private int idPaquete;
+
+    // Atributos privados
     private double peso;
     private String destino;
-    private String destinatario;
-    private String etiquetaUnica;
 
-    //Constructor
-    public PaqueteLogistico(int idPaquete, double peso, String destino, String destinatario) {
-        this.idPaquete = idPaquete;
-        setPeso(peso);
-        setDestino(destino);
-        setDestinatario(destinatario);
-        this.etiquetaUnica = "ETQ" + idPaquete;
-    }
-
-    //getters
-    public int getIdPaquete(){
-        return idPaquete;
-    }
-    public double getPeso(){
-        return peso;
-    }
-    public String getDestino(){
-        return destino;
-    }
-    public String getDestinatario() {
-    return destinatario;
-    }
-    public String getEtiquetaUnica(){
-        return etiquetaUnica;
-    }
-
-    //Validacion 
-    public void setPeso (double peso) {
-        if (peso >= 0.1 && peso <= 500) {
-        this.peso = peso;
-    } else {
-        System.out.println("Peso inválido. Se asigna valor seguro.");
-        this.peso = 0.1;
-    }
-    }
-    public void setDestino (String destino) {
-        if (destino == null || destino.trim().isEmpty()) {
-        System.out.println("Destino inválido");
-        this.destino = "SIN DESTINO";
-    } else {
+    // Constructor que recibe el destino
+    public PaqueteLogistico(String destino) {
         this.destino = destino;
     }
+
+    // Getter de peso
+    public double getPeso() {
+        return peso;
     }
-    public void setDestinatario (String destinatario) {
-        if (destinatario == null || destinatario.trim().isEmpty()) {
-            System.out.println("Destinatario inválido");
-            this.destinatario = "DESCONOCIDO";
+
+    // Setter de peso con programación defensiva
+    public void setPeso(double peso) {
+        if (peso >= 0.1 && peso <= 500) {
+            this.peso = peso;
         } else {
-            this.destinatario = destinatario;
+            System.out.println("Error: El peso debe estar entre 0.1 y 500 kg.");
+        }
+    }
+
+    // Getter de destino
+    public String getDestino() {
+        return destino;
+    }
+
+    // Setter de destino con validación
+    public void setDestino(String destino) {
+        if (destino != null && !destino.isEmpty()) {
+            this.destino = destino;
+        } else {
+            System.out.println("Error: El destino no puede estar vacío.");
         }
     }
 }

@@ -1,13 +1,32 @@
 public class Main {
-    public static void main(String[] args) {
-        VehiculoLogistico v1 = new VehiculoLogistico("placa", 0, 0);
-        VehiculoLogistico v2 = new Camion("placa", 0, 0, 0);
-        VehiculoLogistico v3 = new Dron("placa", 0, 0, 0);
-        VehiculoLogistico v4 = new Motocicleta("placa", 0, 0, 0);
 
-        System.out.println("Base: " + v1.calcularCostoViaje(100));
-        System.out.println("Camion: " + v2.calcularCostoViaje(200));
-        System.out.println("Drone: "+ v3.calcularCostoViaje(125));
-        System.out.println("Motocicleta: " + v4.calcularCostoViaje(160));
+    public static void main(String[] args) {
+
+        // 1. Instancia de la clase base
+        VehiculoLogistico vehiculo = new VehiculoLogistico("BASE001", 500);
+
+        // 2. Instancias de clases derivadas
+        Camion camion = new Camion("CAM123", 10000, 6, "Diesel");
+        Dron drone = new Dron("DRN001", 50, 500, 120, "4K");
+        Motocicleta moto = new Motocicleta("MOTO01", 200, 250, 0.8, "Integral");
+
+        // 3. Llamar métodos de cálculo
+
+        System.out.println("=== Vehiculo Base ===");
+        System.out.println("Autonomia: " + vehiculo.calcularAutonomia());
+        System.out.println("Costo de viaje (100 km): " + vehiculo.calcularCostoViaje(100));
+
+        System.out.println("\n=== Camion ===");
+        System.out.println("Autonomia: " + camion.calcularAutonomia());
+        System.out.println("Costo de viaje (100 km): " + camion.calcularCostoViaje(100));
+
+        System.out.println("\n=== Drone ===");
+        System.out.println("Autonomia: " + drone.calcularAutonomia());
+        System.out.println("Costo de viaje (100 km): " + drone.calcularCostoViaje(100));
+
+        System.out.println("\n=== Motocicleta ===");
+        System.out.println("Autonomia: " + moto.calcularAutonomia());
+        System.out.println("Costo de viaje (100 km): " + moto.calcularCostoViaje(100));
+
     }
 }

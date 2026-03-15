@@ -1,54 +1,61 @@
 public class VehiculoLogistico {
-    
+
     protected String placa;
     protected double capacidadCarga;
     protected double velocidadPromedio;
     protected boolean activo;
 
-    public VehiculoLogistico(String placa, double capacidadCarga, double velocidadPromedio){
+    // Constructor
+    public VehiculoLogistico(String placa, double capacidadCarga) {
         this.placa = placa;
         this.capacidadCarga = capacidadCarga;
-        this.velocidadPromedio = velocidadPromedio;
         this.activo = false;
     }
-    //Getters y setters 
-    public String getPlaca(){
+
+    // GETTERS Y SETTERS
+    public String getPlaca() {
         return placa;
     }
 
-    public void setPlaca(String placa){
+    public void setPlaca(String placa) {
         this.placa = placa;
     }
 
-    public double getCapacidadCarga(){
+    public double getCapacidadCarga() {
         return capacidadCarga;
     }
 
-    public void setCapacidadCarga(double capacidadCarga){
+    public void setCapacidadCarga(double capacidadCarga) {
         this.capacidadCarga = capacidadCarga;
     }
 
-    public double getVelocidadPromedio(){
+    public double getVelocidadPromedio() {
         return velocidadPromedio;
     }
 
-    public void setVelocidadPromedio(double velocidadPromedio){
+    public void setVelocidadPromedio(double velocidadPromedio) {
         this.velocidadPromedio = velocidadPromedio;
     }
 
-    public void activarVehiculo(){
+    // Activar o desactivar
+    public void activarVehiculo() {
         activo = true;
     }
 
-    public void desactivarVehiculo(){
+    public void desactivarVehiculo() {
         activo = false;
     }
 
-    public double calcularDiatanciaMaxima(){
-        return velocidadPromedio * 8;
+    // Métodos genéricos
+    public double calcularAutonomia() {
+        return velocidadPromedio * 5;
     }
 
-    public double calcularCostoViaje(double distancia){
-        return distancia * 10;
+    public double calcularCostoViaje(double distancia) {
+        return distancia * 2;
+    }
+
+    public double calcularDistanciaMaxima() {
+        return velocidadPromedio * 8;
     }
 }
